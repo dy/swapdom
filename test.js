@@ -2,7 +2,7 @@
 import t, {is, ok, any} from './node_modules/tst/tst.js'
 import {time} from './node_modules/wait-please/index.js'
 import diff from './swap-inflate.js'
-// import diff from '../swap-deflate.js'
+// import diff from './swap-deflate.js'
 // import diff from './libs/list-difference.js'
 // import diff from './libs/udomdiff.js'
 // import diff from './libs/snabbdom.js'

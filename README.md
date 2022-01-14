@@ -13,9 +13,10 @@ swap(parentNode, oldNodes, newNodes, endNode)
 
 Provide custom mutators as:
 ```js
-swap.replace = (parent, a,b) => a.replaceWith(b)
-swap.insert = (parent, a,b) => a ? a.before(b) : parent.append(b)
-swap.remove = (parent, a) => a.remove()
+swap.same = (a,b) => a?.isSameNode(b)
+swap.replace = (a,b, parent) => a.replaceWith(b)
+swap.insert = (a,b, parent) => a ? a.before(b) : parent.append(b)
+swap.remove = (a, parent) => a.remove()
 ```
 
 See [benchmark](https://github.com/luwes/js-diff-benchmark).
