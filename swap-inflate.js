@@ -25,21 +25,22 @@ const swap = (parent, a, b, end = null) => {
       if (cur == bi) cur = next
 
       // swap / replace
-      else if (i < n && b[i] == next) (parent.replaceChild(bi, cur), cur = next)
+      else if (i < n && b[i] == next) (swap.replace(parent, cur, bi), cur = next)
 
       // insert
-      else parent.insertBefore(bi, cur)
+      else swap.insert(parent, cur, bi)
     }
 
     // remove tail
-    while (cur != end) (next = cur.nextSibling, parent.removeChild(cur), cur = next)
+    while (cur != end) (next = cur.nextSibling, swap.remove(parent, cur), cur = next)
   }
 
   return b
 }
 
-swap.replace = (parent, a,b) => a.replaceWith(b)
-swap.insert =
-swap.remove
+swap.replace = (parent, a,b) => parent.replaceChild(b, a)
+swap.insert = (parent, a,b) => parent.insertBefore(b, a)
+swap.remove = (parent, a) => parent.removeChild(a)
+
 
 export default swap

@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "jsdom": "^19.0.0",
-    "tst": "^7.0.0",
+    "tst": "^7.1.0",
     "wait-please": "^3.1.0"
   },
   "name": "swapdom",

@@ -1,12 +1,12 @@
 // dom diff algo benchmark
-import t, {is, ok} from './node_modules/tst/tst.js'
+import t, {is, ok, any} from './node_modules/tst/tst.js'
 import {time} from './node_modules/wait-please/index.js'
 import diff from './swap-inflate.js'
 // import diff from '../swap-deflate.js'
-// import diff from './list-difference.js'
-// import diff from './udomdiff.js'
-// import diff from './snabbdom.js'
-// import diff from './stage0.js'
+// import diff from './libs/list-difference.js'
+// import diff from './libs/udomdiff.js'
+// import diff from './libs/snabbdom.js'
+// import diff from './libs/stage0.js'
 
 
 const t1 = document.createElement('i1'),
@@ -38,13 +38,14 @@ const frag = () => {
   return f
 }
 
+t('begin', () => console.time('total'))
 
 t('create', t => {
   let parent = frag();
 
   diff(parent,[...parent.childNodes], [t1,t2,t3,t4,t5], null);
   is([...parent.childNodes], [t1,t2,t3,t4,t5], 'create')
-  is(parent.count, 5)
+  ok(parent.count <= 5)
 })
 
 t('remove', t => {
@@ -88,7 +89,7 @@ t('swap 2/5', t => {
   diff(parent,[...parent.childNodes],[t1,t5,t3,t4,t2],);
   is([...parent.childNodes], [t1,t5,t3,t4,t2])
 
-  is(parent.count, 2, 'ops')
+  ok(parent.count <= 2, 'ops')
 })
 t('swap-replace', t => {
   let parent = frag();
@@ -109,7 +110,7 @@ t('swap', t => {
   diff(parent,[...parent.childNodes],[t1,t8,t3,t4,t5,t6,t7,t2,t9],);
   is([...parent.childNodes], [t1,t8,t3,t4,t5,t6,t7,t2,t9])
 
-  is(parent.count, 2, 'ops')
+  ok(parent.count <= 2, 'ops')
 })
 
 t('swap-tail', t => {
@@ -121,7 +122,7 @@ t('swap-tail', t => {
   diff(parent,[...parent.childNodes],[t9,t2,t3,t4,t5,t6,t7,t8,t1]);
   is([...parent.childNodes], [t9,t2,t3,t4,t5,t6,t7,t8,t1])
 
-  is(parent.count, 2, 'ops')
+  ok(parent.count <= 2, 'ops')
 })
 
 t('single', t => {
@@ -168,7 +169,7 @@ t('shiftpop', t => {
   diff(parent,[...parent.childNodes],[t0,t1,t2,t3,t4]);
   is([...parent.childNodes], [t0,t1,t2,t3,t4])
 
-  is(parent.count, 2, 'ops')
+  ok(parent.count <= 2, 'ops')
 })
 
 t('endswap', t => {
@@ -402,7 +403,7 @@ t('create/replace ops', t => {
   parent.reset()
   diff(parent,[...parent.childNodes],childNodes,)
 
-  is(parent.count, N)
+  ok(parent.count <= N)
 
   // replace
   start = N
@@ -656,6 +657,8 @@ t('clear 10000', async t => {
   console.log(...out, '\n');
   parent.reset();
 })
+
+t('end', t => console.timeEnd('total'))
 
 
 function random(parent, diff) {

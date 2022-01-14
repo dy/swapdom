@@ -3,7 +3,7 @@
 const swap = (parent, a, b, end = null) => {
   let i = 0, cur, next, bi, bidx = new Set(b)
 
-  while (bi = a[i++]) !bidx.has(bi) ? parent.removeChild(bi) : cur = cur || bi
+  while (bi = a[i++]) !bidx.has(bi) ? swap.remove(parent, bi) : cur = cur || bi
   cur = cur || end, i = 0
 
   while (bi = b[i++]) {
@@ -17,14 +17,15 @@ const swap = (parent, a, b, end = null) => {
       if (b[i] === next) cur = next
 
       // insert
-      parent.insertBefore(bi, cur)
+      swap.insert(parent, cur, bi)
     }
   }
 
   return b
 }
 
-swap.insert
-swap.remove
+swap.replace = (parent, a,b) => parent.replaceChild(b, a)
+swap.insert = (parent, a,b) => parent.insertBefore(b, a)
+swap.remove = (parent, a) => parent.removeChild(a)
 
 export default swap

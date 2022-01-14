@@ -8,8 +8,15 @@ import swap from './swap-inflate.js'
 swap(parentNode, oldNodes, newNodes, endNode)
 ```
 
-Deflate strategy is shorter (208b), but slower and doesn't support live collection.
-Inflate strategy is bigger (363b), but faster and support live collection.
+`swap-deflate.js` strategy is smaller (208b), but slower and doesn't support live collections.
+`swap-inflate.js` strategy is bigger (363b), but faster and support live collections.
+
+Provide custom mutators as:
+```js
+swap.replace = (parent, a,b) => a.replaceWith(b)
+swap.insert = (parent, a,b) => a ? a.before(b) : parent.append(b)
+swap.remove = (parent, a) => a.remove()
+```
 
 See [benchmark](https://github.com/luwes/js-diff-benchmark).
 
