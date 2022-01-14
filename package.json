@@ -1,0 +1,36 @@
+{
+  "devDependencies": {
+    "jsdom": "^19.0.0",
+    "tst": "^7.0.0",
+    "wait-please": "^3.1.0"
+  },
+  "name": "swapdom",
+  "description": "Fast & tiny DOM swapper.",
+  "version": "1.0.0",
+  "main": "swap-inflate.js",
+  "module": "swap-inflate.js",
+  "browser": "swap-inflate.js",
+  "type": "module",
+  "scripts": {
+    "test": "node -r ./test-register.cjs test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spectjs/swapdom.git"
+  },
+  "keywords": [
+    "domdiff",
+    "domswap",
+    "dom",
+    "swap",
+    "snabbdom",
+    "heckel",
+    "morphdom"
+  ],
+  "author": "Dmitry Iv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spectjs/swapdom/issues"
+  },
+  "homepage": "https://github.com/spectjs/swapdom#readme"
+}
