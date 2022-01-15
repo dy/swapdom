@@ -32,7 +32,7 @@ const swap = (parent, a, b, end = null) => {
     }
 
     // remove tail
-    while (cur != end) (next = cur.nextSibling, remove(cur, parent), cur = next)
+    while (!same(cur, end)) (next = cur.nextSibling, remove(cur, parent), cur = next)
   }
 
   return b
