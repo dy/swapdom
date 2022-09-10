@@ -9,7 +9,7 @@ swap(parentNode, oldNodes, newNodes, endNode)
 ```
 
 `swap-deflate.js` strategy is smaller (208b), but slower and doesn't support live collections.<br/>
-`swap-inflate.js` strategy is bigger (363b), but faster and supports live collections.
+`swap-inflate.js` strategy is bigger (318b), but faster and supports live collections.
 
 Provide custom mutators as:
 ```js
