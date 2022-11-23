@@ -3,7 +3,7 @@
 > Fast & tiny DOM swapper.
 
 ```js
-import swap from './swap-inflate.js'
+import swap from 'swapdom'
 
 swap(parentNode, oldNodes, newNodes, endNode)
 ```
@@ -19,6 +19,6 @@ swap.insert = (a,b, parent) => a ? a.before(b) : parent.append(b)
 swap.remove = (a, parent) => a.remove()
 ```
 
-See [benchmark](https://github.com/luwes/js-diff-benchmark).
+See [benchmark](https://github.com/luwes/js-diff-benchmark) (it's called _spect_ there).
 
 <p align="center">ॐ</p>
