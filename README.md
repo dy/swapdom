@@ -19,6 +19,6 @@ swap.insert = (a,b, parent) => a ? a.before(b) : parent.append(b)
 swap.remove = (a, parent) => a.remove()
 ```
 
-See [benchmark](https://github.com/luwes/js-diff-benchmark) (it's called _spect_ there).
+See [benchmark and alternatives](https://github.com/luwes/js-diff-benchmark) (it's called _spect_ there).
 
 <p align="center">ॐ</p>
