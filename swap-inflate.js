@@ -4,7 +4,9 @@
 // + a can be live childNodes/HTMLCollection
 
 const swap = (parent, a, b, end = null) => {
-  let i = 0, cur, next, bi, n = b.length, m = a.length, { remove, same, insert, replace } = swap
+  let i = 0, cur, next, bi,
+      n = b.length,
+      m = a.length, { remove, same, insert, replace } = swap
 
   // skip head/tail
   while (i < n && i < m && same(a[i], b[i])) i++
@@ -32,6 +34,7 @@ const swap = (parent, a, b, end = null) => {
     }
 
     // remove tail
+    // FIXME: that can remove elements not in a (inserted externally)
     while (!same(cur, end)) (next = cur.nextSibling, remove(cur, parent), cur = next)
   }
 

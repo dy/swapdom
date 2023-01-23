@@ -21,6 +21,7 @@ const t1 = document.createElement('i1'),
       t0 = document.createElement('i0')
 
 
+// test fragment stub with node-compatible API
 const frag = () => {
   let f = document.createDocumentFragment()
   f.count = 0
@@ -194,14 +195,17 @@ t('endswap2', t => {
   is([...parent.childNodes], [t1,t2,t3,t4,t6])
 })
 
-t.todo('skip', t => {
+// FIXME: this removes extra nodes
+t.todo('foreign', t => {
   let parent = frag();
-  diff(parent,[], [t1,t2,t3,t4,t5]);
+  diff(parent,[], [t1,t2,t3]);
+  let t2clone = t2.cloneNode(true)
+  parent.insertBefore(t2clone, t2)
   parent.reset()
 
-  console.log('--->')
-  diff(parent,[...parent.childNodes],[t1,t2,t3,t4,t5], null, 2);
-  is([...parent.childNodes], [t3,t4,t5])
+  console.log('---foreign swap')
+  diff(parent,[t1,t2,t3],[t2,t3]);
+  is([...parent.childNodes], [t2clone,t2,t3])
 })
 
 t('shuffle1', t => {
