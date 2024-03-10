@@ -13,11 +13,11 @@ const swap = (parent, a, b, end = null) => {
     if (same(cur, bi)) cur = next
 
     else {
-      // swap 1:1 (only perf purpose)
+      // swap 1:1 (saves costly swaps)
       if (same(b[i], next)) cur = next
 
       // insert
-      insert(cur, bi, parent)
+      insert(bi, cur, parent)
     }
   }
 
@@ -26,7 +26,7 @@ const swap = (parent, a, b, end = null) => {
 
 swap.same = (a, b) => a === b
 swap.replace = (a, b, parent) => parent.replaceChild(b, a)
-swap.insert = (a, b, parent) => parent.insertBefore(b, a)
+swap.insert = (a, b, parent) => parent.insertBefore(a, b)
 swap.remove = (a, parent) => parent.removeChild(a)
 
 export default swap

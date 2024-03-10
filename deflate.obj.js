@@ -1,28 +1,30 @@
 // deflate version, but for objects as inputs
-const swap = (parent, a, b, end = null) => {
-  let i = 0, cur, next, bi, bidx = new Set(b), { same, remove, insert } = swap
+const swap = (parent, a, b, end = null, { same, remove, insert }) => {
+  let i = 0, cur, bi, next, ins,
+    bidx = new WeakSet(b),
+    keys = Object.keys(b)
 
-  for (i in a) {
-    bi = a[i]
-    !bidx.has(bi) ? remove(bi, parent) : cur ||= bi
-  }
+  // first remove unneeded
+  for (i in a) bi = a[i], !bidx.has(bi) ? remove(bi, parent) : (cur ||= bi)
   cur ||= end
 
-  for (i in b) {
-    bi = b[i], next = cur ? cur.nextSibling : end
-
-    // skip
+  // then add needed
+  while (i = keys.shift()) {
+    bi = b[i], next = cur?.nextSibling || end
     if (same(cur, bi)) cur = next
+    else {
+      // swap 1:1 (saves costly swaps)
+      if (same(b[keys[0]], next)) cur = next
 
-    // insert
-    else insert(cur, bi, parent)
+      insert(bi, cur, parent), ins = 1
+    }
   }
 
   return b
 }
 
 swap.same = (a, b) => a === b
-swap.insert = (a, b, parent) => parent.insertBefore(b, a)
+swap.insert = (a, b, parent) => parent.insertBefore(a, b)
 swap.remove = (a, parent) => parent.removeChild(a)
 
 export default swap
