@@ -1,5 +1,5 @@
 // deflate version, but for objects as inputs
-const swap = (parent, a, b, end = null, { same, remove, insert }) => {
+const swap = (parent, a, b, end = null) => {
   let i = 0, cur, bi, next, ins,
     bidx = new WeakSet(b),
     keys = Object.keys(b)
@@ -23,8 +23,8 @@ const swap = (parent, a, b, end = null, { same, remove, insert }) => {
   return b
 }
 
-swap.same = (a, b) => a === b
-swap.insert = (a, b, parent) => parent.insertBefore(a, b)
-swap.remove = (a, parent) => parent.removeChild(a)
+const same = (a, b) => a === b
+const insert = (a, b, parent) => parent.insertBefore(a, b)
+const remove = (a, parent) => parent.removeChild(a)
 
 export default swap
