@@ -6,8 +6,8 @@ import { time } from './node_modules/wait-please/index.js'
 // import diff from './libs/snabbdom.js'
 // import diff from './libs/stage0.js'
 // import diff from './inflate.js'
-// import diff from './deflate.js'
-import diff from './deflate.obj.js'
+import diff from './deflate.js'
+// import diff from './deflate.obj.js'
 
 
 const t1 = document.createElement('i1'),

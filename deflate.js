@@ -1,7 +1,7 @@
 // deflate version of differ, ~170b
 // NOTE: doesn't support live b
-const swap = (parent, a, b, end = null) => {
-  let i = 0, cur, next, bi, bidx = new Set(b), { same, remove, insert } = swap
+const swap = (parent, a, b, end = null, { remove, insert } = swap) => {
+  let i = 0, cur, next, bi, bidx = new Set(b)
 
   while (bi = a[i++]) !bidx.has(bi) ? remove(bi, parent) : cur = cur || bi
   cur = cur || end, i = 0
@@ -10,11 +10,11 @@ const swap = (parent, a, b, end = null) => {
     next = cur ? cur.nextSibling : end
 
     // skip
-    if (same(cur, bi)) cur = next
+    if (cur === bi) cur = next
 
     else {
       // swap 1:1 (saves costly swaps)
-      if (same(b[i], next)) cur = next
+      if (b[i] === next) cur = next
 
       // insert
       insert(bi, cur, parent)
@@ -24,8 +24,6 @@ const swap = (parent, a, b, end = null) => {
   return b
 }
 
-swap.same = (a, b) => a === b
-swap.replace = (a, b, parent) => parent.replaceChild(b, a)
 swap.insert = (a, b, parent) => parent.insertBefore(a, b)
 swap.remove = (a, parent) => parent.removeChild(a)
 

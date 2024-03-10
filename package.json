@@ -11,6 +11,11 @@
   "module": "inflate.js",
   "browser": "inflate.js",
   "type": "module",
+  "exports": {
+    ".": "./inflate.js",
+    "./deflate": "./path/to/deflate.js",
+    "./inflate": "./path/to/inflate.js"
+  },
   "scripts": {
     "test": "node -r ./test-register.cjs test.js"
   },
