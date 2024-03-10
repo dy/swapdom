@@ -7,9 +7,9 @@
   "name": "swapdom",
   "description": "Fast & tiny DOM swapper.",
   "version": "1.1.1",
-  "main": "swap-inflate.js",
-  "module": "swap-inflate.js",
-  "browser": "swap-inflate.js",
+  "main": "inflate.js",
+  "module": "inflate.js",
+  "browser": "inflate.js",
   "type": "module",
   "scripts": {
     "test": "node -r ./test-register.cjs test.js"
