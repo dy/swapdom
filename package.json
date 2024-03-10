@@ -6,7 +6,7 @@
   },
   "name": "swapdom",
   "description": "Fast & tiny DOM swapper.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "main": "inflate.js",
   "module": "inflate.js",
   "browser": "inflate.js",
