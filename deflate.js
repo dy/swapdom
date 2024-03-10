@@ -1,5 +1,5 @@
 // deflate version of differ, ~170b
-// - doesn't support live b
+// NOTE: doesn't support live b
 const swap = (parent, a, b, end = null) => {
   let i = 0, cur, next, bi, bidx = new Set(b), { same, remove, insert } = swap
 
@@ -13,7 +13,7 @@ const swap = (parent, a, b, end = null) => {
     if (same(cur, bi)) cur = next
 
     else {
-      // swap 1:1
+      // swap 1:1 (only perf purpose)
       if (same(b[i], next)) cur = next
 
       // insert
