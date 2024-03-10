@@ -25,6 +25,5 @@ See [benchmark](https://github.com/luwes/js-diff-benchmark) (it's called _spect_
 
 * [list-difference objects](https://github.com/paldepind/list-difference/blob/master/index.js)
 * [list-difference maps](https://github.com/luwes/js-diff-benchmark/blob/master/libs/list-difference.js)
-*
 
 <p align="center">ॐ</p>

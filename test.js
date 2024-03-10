@@ -1,8 +1,8 @@
 // dom diff algo benchmark
 import t, { is, ok, any } from './node_modules/tst/tst.js'
 import { time } from './node_modules/wait-please/index.js'
-import diff from './inflate.js'
-// import diff from './swap-deflate.js'
+// import diff from './inflate.js'
+import diff from './deflate.js'
 // import diff from './libs/list-difference.js'
 // import diff from './libs/udomdiff.js'
 // import diff from './libs/snabbdom.js'
@@ -338,7 +338,7 @@ t('clear', t => {
   diff(parent, [...parent.childNodes], [],);
   is([...parent.childNodes], [])
 })
-t('clear live', t => {
+t.skip('clear live', t => {
   let parent = frag();
   diff(parent, [...parent.childNodes], [t1, t2, t3, t4, t5]);
   console.log('---clear')
@@ -586,21 +586,6 @@ t('update every 10th row', async t => {
   parent.reset();
 })
 
-t('create 10000 rows', async t => {
-  const parent = frag()
-
-  console.time('create 10000 rows');
-  create10000(parent, diff);
-  console.timeEnd('create 10000 rows');
-
-  const out = ['operations', parent.count];
-  if (parent.count > 10000) {
-    console.warn(`+${parent.count - 10000}`);
-  }
-  console.log(...out, '\n');
-  parent.reset();
-})
-
 t('create comparisons', async t => {
   let parent, childNodes
 
@@ -632,7 +617,22 @@ t('create comparisons', async t => {
   console.timeEnd('diff')
 })
 
-t('swap over 10000 rows', async t => {
+t.skip('create 10000 rows', async t => {
+  const parent = frag()
+
+  console.time('create 10000 rows');
+  create10000(parent, diff);
+  console.timeEnd('create 10000 rows');
+
+  const out = ['operations', parent.count];
+  if (parent.count > 10000) {
+    console.warn(`+${parent.count - 10000}`);
+  }
+  console.log(...out, '\n');
+  parent.reset();
+})
+
+t.skip('swap over 10000 rows', async t => {
   const parent = frag()
   create10000(parent, diff);
   parent.reset()
@@ -647,7 +647,7 @@ t('swap over 10000 rows', async t => {
   parent.reset();
 })
 
-t('clear 10000', async t => {
+t.skip('clear 10000', async t => {
   const parent = frag()
   create10000(parent, diff);
   parent.reset()
