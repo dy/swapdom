@@ -13,8 +13,8 @@
   "type": "module",
   "exports": {
     ".": "./inflate.js",
-    "./deflate": "./path/to/deflate.js",
-    "./inflate": "./path/to/inflate.js"
+    "./deflate": "./deflate.js",
+    "./inflate": "./inflate.js"
   },
   "scripts": {
     "test": "node -r ./test-register.cjs test.js"
